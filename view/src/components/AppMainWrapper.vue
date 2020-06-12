@@ -1,13 +1,22 @@
 <template>
     <div>
-
+        <cart-catalog/>
+        <shipping/>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "AppMainWrapper"
+
+import CartCatalog from "./Cart/CartCatalog";
+import Shipping from "./Shipping/Shipping";
+
+export default {
+    name: "AppMainWrapper",
+    components: {
+        CartCatalog,
+        Shipping
     }
+}
 </script>
 
 <style scoped>
