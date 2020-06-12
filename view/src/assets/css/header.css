@@ -1,0 +1,36 @@
+.header {
+    margin-bottom: 60px;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #93a1a1;
+}
+
+.menu {
+    max-width: 800px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-link {
+    width: 150px;
+    margin: 0 8px;
+    height: 60px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #0f6674;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 2px 0 #0C9A9A;
+    font-weight: lighter;
+    font-size: 14pt;
+}
+
+.header-link:hover {
+    background-color: #0f6674;
+    color: #e0e0e0;
+}
