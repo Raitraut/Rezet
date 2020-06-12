@@ -1,16 +1,21 @@
 <template>
     <div class="shipping-wrapper">
         <h1>Shipping</h1>
-        <div class="shipping-table">
-            <div class="shipping-item head">
-                <span class="item item-title">title</span>
-                <span class="item">price</span>
+        <div class="wrapper">
+            <div class="shipping-table">
+                <div class="shipping-item head">
+                    <span class="item item-title">title</span>
+                    <span class="item">price</span>
+                </div>
+                <shipping-item
+                    v-for="product in products"
+                    :key="product.title"
+                    :product="product"
+                />
             </div>
-            <shipping-item
-                v-for="product in products"
-                :key="product.title"
-                :product="product"
-            />
+            <div class="shipping-form">
+
+            </div>
         </div>
     </div>
 </template>
@@ -75,5 +80,9 @@
     .shipping-wrapper {
         max-width: 1100px;
         margin: 0 auto;
+    }
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
     }
 </style>
