@@ -1,8 +1,9 @@
 import Vue from "vue"
 import VueRouter from 'vue-router'
-import CartCatalog from "../components/Cart/CartCatalog";
-import Shipping from "../components/Shipping/Shipping";
+import ProductCatalog from "../components/Catalog/ProductCatalog";
+import Cart from "../components/Cart/Cart";
 import NotFound from "../components/NotFound";
+import Shipping from "../components/Shipping/Shipping";
 
 Vue.use(VueRouter)
 
@@ -10,7 +11,12 @@ const routes = [
     {
         path: '/',
         name: 'catalog',
-        component: CartCatalog
+        component: ProductCatalog
+    },
+    {
+        path: '/cart',
+        name: 'cart',
+        component: Cart
     },
     {
         path: '/shipping',

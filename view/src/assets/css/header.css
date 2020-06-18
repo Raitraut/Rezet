@@ -1,17 +1,15 @@
 .header {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     display: flex;
-    height: 140px;
-    justify-content: center;
+    height: 80px;
+    justify-content: flex-end;
     align-items: center;
-    border-bottom: 1px solid #93a1a1;
+    /*border-bottom: 1px solid #93a1a1;*/
 }
 
 .menu {
-    max-width: 800px;
-    height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 .header-link {
@@ -33,4 +31,13 @@
 .header-link:hover {
     background-color: #0f6674;
     color: #e0e0e0;
+}
+
+@media (max-width: 400px) {
+    .header-link {
+        width: 125px;
+        height: 44px;
+        font-weight: bold;
+        font-size: 11pt;
+    }
 }

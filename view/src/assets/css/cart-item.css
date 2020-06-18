@@ -1,0 +1,47 @@
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 16px 25px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 10px 0 #e0e0e0;
+    position: relative;
+    min-width:900px;
+}
+.cart-item-image {
+    max-width: 100px;
+    object-fit: cover;
+}
+.del-from-cart {
+    border-radius: 4px;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.item{
+    width: 300px;
+}
+.trash-icon {
+    width: 25px;
+    height: 25px;
+}
+.trash-icon path{
+    fill: #dadada;
+}
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.decrem {
+    margin-right: 15px;
+}
+.increm {
+    margin-left: 15px;
+}
+.qnt {
+    cursor: pointer;
+}

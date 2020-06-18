@@ -1,0 +1,94 @@
+.shipping-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+.form-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 15px 0;
+}
+.form-item label{
+    font-size: 18px;
+    font-weight: bolder;
+}
+.form-item .input-get{
+    max-width: 316px;
+    width: 100%;
+    min-height: 50px;
+}
+.input-data {
+    max-width: 300px;
+    width: 100%;
+    padding: 6px;
+}
+.form-item .select-data {
+    max-width: 315px;
+    width: 100%;
+    padding: 6px;
+}
+.bth-pay {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 25px;
+}
+.buy-btn {
+    cursor:pointer;
+    width: 130px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: #737373;
+    background-color: #d8d8d8;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.input-get {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.error input{
+    border: 1px solid #a71717;
+}
+.small-error {
+    color: #a71717;
+    display:none;
+    font-size: 12px;
+    margin: 5px 0;
+}
+.error .small-error {
+    display: block!important;
+}
+
+@media (max-width: 500px) {
+    .input-data {
+        max-width: 230px;
+    }
+    .form-item .input-get {
+        max-width: 245px;
+    }
+    .form-item .select-data {
+        max-width: 245px;
+    }
+}
+
+@media (max-width: 420px) {
+    .form-item {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-item label {
+        margin-bottom: 13px;
+    }
+}

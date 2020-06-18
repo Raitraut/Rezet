@@ -2,12 +2,14 @@
     <div class="header">
         <div class="menu">
             <router-link class="header-link" :to="{name: 'catalog'}">Catalog</router-link>
-            <router-link class="header-link" :to="{name: 'shipping'}">Shipping</router-link>
+            <router-link class="header-link" :to="{name: 'cart'}">Cart({{ carts.length }})</router-link>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+
     export default {
         name: "AppHeader",
         data() {
@@ -16,9 +18,9 @@
             }
         },
         computed: {
-            uri(){
-                return this.$route.fullPath;
-            }
+            ...mapGetters([
+               'carts'
+            ])
         }
     }
 </script>

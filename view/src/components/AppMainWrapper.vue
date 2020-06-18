@@ -9,6 +9,9 @@
 
 export default {
     name: "AppMainWrapper",
+    created() {
+        this.$store.dispatch('setCartSessionFromStorage')
+    }
 }
 </script>
 
