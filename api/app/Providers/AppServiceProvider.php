@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::extend('phone', function ($attribute, $value) {
-            return preg_match('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/', $value);
+            return preg_match('/^[0-9]{10}+$/', $value);
         });
     }
 }

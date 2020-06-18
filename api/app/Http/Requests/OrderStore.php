@@ -29,8 +29,8 @@ class OrderStore extends FormRequest
             'email' => 'email:rfc,dns|min:8|max:30',
             'phone' => 'phone|min:10|max:14',
             'shipping_type' => 'required|alpha|min:4|max:8',
-            'shipping_price' => 'required|numeric|min:3|max:5',
-            'total_price' => 'required|numeric|min:1|max:50',
+            'shipping_price' => 'required|numeric|min:0|max:40',
+            'total_price' => 'required|numeric|min:1|max:100000',
             'products_quantity' => 'required|min:1|max:100'
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStore;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -38,13 +39,13 @@ class OrderController extends Controller
     public function store(OrderStore $request)
     {
         $order = Order::create($request->all());
-        $products_quantity = json_decode((string)$request->only('products_quantity'));
+        $products_quantity = json_decode($request->only('products_quantity')['products_quantity']);
         foreach ($products_quantity as $product => $quantity) {
-            $order->orderItems()->create([
+            OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => (int)$product,
-                'quantity' => $quantity
-                ]);
+                'quantity' => (float)$quantity
+            ]);
         }
         return response()->json(['order_number' => $order->id]);
     }

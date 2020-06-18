@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Shipping</h1>
-        <form method="post" class="shipping-form">
+        <form class="shipping-form">
             <div class="form-item">
                 <label for="name">Name*</label>
                 <div class="input-get" :class="{error : $v.name.$error}">
@@ -82,21 +82,36 @@
                 </select>
             </div>
             <div class="bth-pay">
-                <button class="buy-btn" :disabled="$v.$invalid">PAY</button>
+                <button
+                        class="buy-btn"
+                        type="submit"
+                        @click="payForm"
+                        :disabled="$v.$invalid && totalPrice > 0"
+                >
+                    PAY
+                </button>
             </div>
         </form>
+        <pop-up-pay
+            v-if="popup"
+        />
     </div>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import { helpers, required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+    import PopUpPay from "./PopUpPay";
     const alpha = helpers.regex("alpha", /^[a-zA-Z\s]*$/)
     const alphaNum = helpers.regex("alphaNum", /^[a-zA-Z0-9\s]*$/)
     const phone = helpers.regex("phone", /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/)
 
     export default {
         name: "Shipping",
+        components: {PopUpPay},
+        component: {
+            PopUpPay
+        },
         data() {
             return {
                 name: '',
@@ -104,6 +119,7 @@
                 phone: '',
                 address: '',
                 shippingType: 'Free 0.0',
+                popup: false
             }
         },
         validations: {
@@ -133,8 +149,24 @@
         methods: {
             ...mapActions([
                 'getTotalPrice',
-                'getCartFromStorage'
-            ])
+                'getCartFromStorage',
+                'createOrder'
+            ]),
+            payForm(e) {
+                e.preventDefault();
+                const shipping = this.shippingType.split(' ')
+                let preparePayload =  {
+                    name: this.name,
+                    email: this.email,
+                    phone: this.phone,
+                    address: this.address,
+                    shipping_type: shipping[0],
+                    shipping_price: shipping[1],
+                }
+                this.createOrder(preparePayload).then(() => {
+                    this.popup = true
+                })
+            }
         },
         computed: {
             ...mapGetters([

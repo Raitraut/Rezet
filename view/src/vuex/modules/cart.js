@@ -73,8 +73,9 @@ const cart = {
             commit("removeFromCartStorage", payload.id)
         },
         setCartSessionFromStorage({commit, dispatch}) {
-            const cart_storage = JSON.parse(localStorage.getItem('cart_storage'))
-            if(cart_storage !== undefined && cart_storage !== '' && cart_storage !== null) {
+            let cart_storage = localStorage.getItem('cart_storage')
+            if(cart_storage !== '') {
+                cart_storage = JSON.parse(cart_storage)
                 commit('setCartStorage', cart_storage)
                 dispatch('getCartFromStorage')
             }
@@ -91,6 +92,24 @@ const cart = {
                 price += element.price*element.quantity
             })
             commit('setTotalPrice', price)
+        },
+        createOrder({state}, payload) {
+            let data = payload
+            data.products_quantity = localStorage.getItem('cart_storage').toString()
+            data.total_price = state.total_price
+            return axios.post('http://rezet/api/order', data).
+                then((response) => {
+                    localStorage.setItem('order_num', response.data.order_number)
+                    return response
+                }).catch((error) => {
+                    return error
+                })
+        },
+        cleanCart({commit}) {
+            commit("setCart", [])
+            commit("setCartStorage", {})
+            commit("setTotalPrice", 0)
+            localStorage.setItem('cart_storage', "")
         }
     },
     getters: {
