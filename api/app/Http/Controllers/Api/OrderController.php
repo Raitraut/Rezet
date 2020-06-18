@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderStore;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -32,11 +33,20 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(OrderStore $request)
     {
-        //
+        $order = Order::create($request->all());
+        $products_quantity = json_decode((string)$request->only('products_quantity'));
+        foreach ($products_quantity as $product => $quantity) {
+            $order->orderItems()->create([
+                'order_id' => $order->id,
+                'product_id' => (int)$product,
+                'quantity' => $quantity
+                ]);
+        }
+        return response()->json(['order_number' => $order->id]);
     }
 
     /**

@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('product','Api\ProductController')->only('index');
+Route::resource('order', 'Api\OrderController')->only('store');
 Route::get('cart', 'Api\CartController@index')->name('cart.index');
