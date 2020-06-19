@@ -1,7 +1,9 @@
 <template>
     <div class="product-item">
         <img :src="image" class="undefined-image" alt="undefined image">
-        <p>{{product.name}}</p>
+        <p>
+            {{product.name}}
+        </p>
         <span>{{product.price}} &euro;</span>
         <div
              v-if="!in_cart"

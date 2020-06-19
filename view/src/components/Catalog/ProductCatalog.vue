@@ -1,14 +1,33 @@
 <template>
     <div>
         <h1>Catalog</h1>
-        <div class="product-catalog">
+        <div class="product-catalog" v-if="skeleton">
+            <div class="skeleton"
+                 v-for="i in 6"
+                 :key="i"
+            >
+                <content-loader
+                        :width="330"
+                        :height="280"
+                        :speed="2"
+                        primaryColor="#f3f3f3"
+                        secondaryColor="#ecebeb"
+                >
+                    <rect x="72" y="192" rx="3" ry="3" width="178" height="19" />
+                    <rect x="57" y="12" rx="0" ry="0" width="213" height="161" />
+                    <rect x="121" y="228" rx="3" ry="3" width="80" height="12" />
+                    <rect x="98" y="248" rx="3" ry="3" width="124" height="30" />
+                </content-loader>
+            </div>
+        </div>
+        <div class="product-catalog" v-if="!skeleton">
             <product-item
              v-for="product in products"
              :key="product.name"
              :product="product"
             />
         </div>
-        <div class="pagination">
+        <div class="pagination" v-if="!skeleton">
             <div :class="{disabled_link : pagination.current_page === 1}"
                  @click="getProductFromPager(pagination.current_page - 1)"
             >
@@ -35,14 +54,17 @@
 <script>
     import ProductItem from './ProductItem'
     import {mapGetters, mapActions} from 'vuex'
+    import { ContentLoader } from 'vue-content-loader'
 
     export default {
         name: "ProductCatalog",
         components: {
-            ProductItem
+            ProductItem,
+            ContentLoader
         },
         data() {
             return {
+                skeleton: true
             }
         },
         methods: {
@@ -62,7 +84,9 @@
             ]),
         },
         created() {
-            this.getProductsFromApi(this.pagination.current_page)
+            this.getProductsFromApi(this.pagination.current_page).then(() => {
+                this.skeleton = !this.skeleton
+            })
         }
     }
 </script>

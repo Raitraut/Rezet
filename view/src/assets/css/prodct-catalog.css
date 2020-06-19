@@ -27,7 +27,9 @@
 .disabled_link {
     pointer-events: none;
 }
-
+.skeleton {
+    box-shadow: 0 0 8px 0 #e0e0e0;
+}
 @media (max-width: 935px) {
     .product-catalog {
         grid-template-columns: repeat(2,1fr);
