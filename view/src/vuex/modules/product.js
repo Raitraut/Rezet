@@ -19,7 +19,7 @@ const products = {
             if(payload !== undefined) {
                 page = payload
             }
-            return axios.get('http://rezet/api/product?page=' + page).then((response) => {
+            return axios.get('http://neep.gq/backend/public/api/product?page=' + page).then((response) => {
                 const pagination = {
                     current_page: response.data.products.current_page,
                     last_page: response.data.products.last_page

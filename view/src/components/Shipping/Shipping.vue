@@ -86,7 +86,7 @@
                         class="buy-btn"
                         type="submit"
                         @click="payForm"
-                        :disabled="$v.$invalid && totalPrice > 0"
+                        :disabled="$v.$invalid || totalPrice <= 0"
                 >
                     PAY
                 </button>

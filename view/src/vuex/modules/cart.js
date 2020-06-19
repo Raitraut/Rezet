@@ -47,20 +47,22 @@ const cart = {
     },
     actions: {
         getCartFromStorage({commit, state}) {
-            if(Object.keys(state.cart_storage).length !== 0) {
-                return axios.get('http://rezet/api/cart?products_id=' + Object.keys(state.cart_storage).toString()).
-                then((response) => {
-                    let cart = response.data.cart
-                    let payload = []
-                    for (const item in response.data.cart) {
-                        cart[item].quantity = state.cart_storage[cart[item].id]
-                        payload.push(cart[item])
-                    }
-                    commit('setCart', payload)
-                    return response
-                }).catch((error) => {
-                    return error
-                })
+            if(state.cart_storage !== undefined && state.cart_storage !== null) {
+                if(Object.keys(state.cart_storage).length !== 0) {
+                    return axios.get('http://neep.gq/backend/public/api/cart?products_id=' + Object.keys(state.cart_storage).toString()).
+                    then((response) => {
+                        let cart = response.data.cart
+                        let payload = []
+                        for (const item in response.data.cart) {
+                            cart[item].quantity = state.cart_storage[cart[item].id]
+                            payload.push(cart[item])
+                        }
+                        commit('setCart', payload)
+                        return response
+                    }).catch((error) => {
+                        return error
+                    })
+                }
             }
         },
         addToCart({commit}, payload) {
@@ -74,7 +76,7 @@ const cart = {
         },
         setCartSessionFromStorage({commit, dispatch}) {
             let cart_storage = localStorage.getItem('cart_storage')
-            if(cart_storage !== '') {
+            if(cart_storage !== null && cart_storage !== '') {
                 cart_storage = JSON.parse(cart_storage)
                 commit('setCartStorage', cart_storage)
                 dispatch('getCartFromStorage')
@@ -97,7 +99,7 @@ const cart = {
             let data = payload
             data.products_quantity = localStorage.getItem('cart_storage').toString()
             data.total_price = state.total_price
-            return axios.post('http://rezet/api/order', data).
+            return axios.post('http://neep.gq/backend/public/api/order', data).
                 then((response) => {
                     localStorage.setItem('order_num', response.data.order_number)
                     return response
