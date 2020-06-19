@@ -85,7 +85,9 @@
         },
         created() {
             this.getProductsFromApi(this.pagination.current_page).then(() => {
-                this.skeleton = !this.skeleton
+                setTimeout(() => {
+                    this.skeleton = !this.skeleton
+                }, 1000)
             })
         }
     }

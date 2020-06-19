@@ -45,7 +45,10 @@
     border-radius: 4px;
     text-decoration: none;
 }
-
+.skeleton-cart {
+    margin-bottom: 16px;
+    box-shadow: 0 0 10px 0 #e0e0e0;
+}
 @media (max-width: 950px) {
     .wrapper {
         overflow-y: hidden;
