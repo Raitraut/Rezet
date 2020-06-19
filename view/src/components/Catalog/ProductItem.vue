@@ -32,7 +32,7 @@
         },
         data() {
             return {
-                image: 'http://rezet' + this.product.image,
+                image: 'http://neep.gq/backend' + this.product.image,
                 in_cart: false
             }
         },

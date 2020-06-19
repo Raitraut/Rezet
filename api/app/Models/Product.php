@@ -20,6 +20,6 @@ class Product extends Model
     public function getImageAttribute($image)
     {
         $path = $image === null ? 'someone.jpg' : $image;
-        return '/storage/' . $path;
+        return '/storage/app/public/' . $path;
     }
 }
