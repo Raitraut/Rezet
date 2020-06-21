@@ -28,7 +28,7 @@
         },
         data() {
             return {
-                image: 'http://rezet' + this.cart.image
+                image: 'http://neep.gq/backend' + this.cart.image
             }
         },
         methods: {
